@@ -3,7 +3,7 @@ A wrapper for a mysql database, which uses models to display data
 
 ## Examples ##
 
-###Setup mysql connection###
+### Setup mysql connection ###
 
 ```csharp
 MySQLActions.ConnectionString = $"server=<serverip>;" +
@@ -13,13 +13,13 @@ MySQLActions.ConnectionString = $"server=<serverip>;" +
                                             $"pwd=<password>";
 ```
 
-###Initialise table###
+### Initialise table ###
 
 ```csharp
 Table = new DBST<TestModel>("test");
 ```
 
-###Insert model###
+### Insert model ###
 
 ```csharp
 Table.Insert(new TestModel()
@@ -28,7 +28,7 @@ Table.Insert(new TestModel()
             });
 ```
 
-###More Examples###
+### More Examples ###
 ```csharp
 MySQLActions.ConnectionString = $"server=<serverip>;" +
                                                         $"port=<serverport>;" +
