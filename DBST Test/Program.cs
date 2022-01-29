@@ -16,11 +16,12 @@ namespace DBST_Test
         {
             Logger.Info("Testing");
 
+
             MySQLActions.ConnectionString = $"server=<serverip>;" +
-                                            $"port=<serverport>;" +
-                                            $"database=<databasename>;" +
-                                            $"uid=<username>;" +
-                                            $"pwd=<password>";
+                                                        $"port=<serverport>;" +
+                                                        $"database=<databasename>;" +
+                                                        $"uid=<username>;" +
+                                                        $"pwd=<password>";
 
             Table = new DBST<TestModel>("test");
 
@@ -28,6 +29,16 @@ namespace DBST_Test
             {
                 Test1 = "foxy"
             });
+
+            TestModel model = null;
+
+            var m = Table.AsList().Find(x => x.Test1 == "foxy");
+
+            m.Test1 = "fox";
+
+            Table.Modify(m);
+
+            Table.Delete(model);
 
             Console.ReadLine();
         }

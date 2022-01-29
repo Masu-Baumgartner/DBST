@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using MB.DBST.Attributes;
+using MB.DBST.Interfaces;
 
 namespace MB.DBST
 {
@@ -165,6 +166,41 @@ namespace MB.DBST
             }
         }
 
+        public void Delete(T model)
+        {
+            lock(Data)
+            {
+                MySQLActions.RemoveData($"DELETE FROM {Table} WHERE id=@Id", model).Wait();
+                Data.Remove(model);
+            }
+        }
+
+        public void Modify(T model)
+        {
+            MySQLActions.SaveData(UpdateStatement + $" WHERE id=@Id", model).Wait();
+
+            int index = -1;
+
+            lock (Data)
+            {
+                foreach (var cm in Data)
+                {
+                    if (((IDBST)cm).Id == ((IDBST)model).Id)
+                    {
+                        index = Data.IndexOf(cm);
+
+                        break;
+                    }
+                }
+
+                if (index != -1)
+                {
+                    Data.RemoveAt(index);
+                    Data.Insert(index, model);
+                }
+            }
+        }
+
         public void Insert(T model)
         {
             int i = MySQLActions.SaveDataAndReturnKey(InsertStatement, model).Result;
@@ -175,6 +211,18 @@ namespace MB.DBST
         public IEnumerator GetEnumerator()
         {
             return Data.GetEnumerator();
+        }
+        public List<T> AsList()
+        {
+            List<T> list = new List<T>();
+
+            lock(Data)
+            {
+                foreach (var m in Data)
+                    list.Add(m);
+            }
+
+            return list;
         }
     }
 }

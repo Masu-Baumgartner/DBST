@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>A mysql wrapper using models</Description>
+    <Copyright>Marcel Baumgartner</Copyright>
+    <PackageProjectUrl>https://github.com/Marcel-Baumgartner/DBST</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Marcel-Baumgartner/DBST</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
