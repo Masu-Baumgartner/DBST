@@ -201,11 +201,18 @@ namespace MB.DBST
             }
         }
 
-        public void Insert(T model)
+        public int Insert(T model)
         {
             int i = MySQLActions.SaveDataAndReturnKey(InsertStatement, model).Result;
 
             model.GetType().GetProperty(KeyField).SetValue(model, i, null);
+
+            lock(Data)
+            {
+                Data.Add(model);
+            }
+
+            return i;
         }
 
         public IEnumerator GetEnumerator()

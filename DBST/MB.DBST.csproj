@@ -7,6 +7,8 @@
     <Copyright>Marcel Baumgartner</Copyright>
     <PackageProjectUrl>https://github.com/Marcel-Baumgartner/DBST</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Marcel-Baumgartner/DBST</RepositoryUrl>
+    <Authors>Marcel-Baumgartner</Authors>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
