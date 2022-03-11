@@ -7,7 +7,7 @@ using MB.DBST.Interfaces;
 
 namespace MB.DBST
 {
-    public class DBST<T> : IEnumerable
+    public class DBST<T> : IEnumerable, IDBSTBase
     {
         private string Table { get; set; }
         private List<T> Data { get; set; }
